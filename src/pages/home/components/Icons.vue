@@ -42,28 +42,29 @@ export default {
   @import '~@/assets/styles/variables.styl';
   @import '~@/assets/styles/mixins.styl';
 
-  .icons >>> .swiper-container
-    height 50vw
-    .swiper-slide
-      display flex
-      flex-wrap wrap
-  .icon
-      width 25vw
-      height 25vw
-      .icon-img
-        box-sizing border-box
-        padding .1rem
-        height 18vw
-        width 18vw
-        margin auto
-        .icon-img-content
-          display block
-          width 100%
-          height 100%
-      .icon-desc
-        height 7vw
-        line-height 7vw
-        text-align center
-        color $darkTextColor
-        ellipsis()
+  .icons >>> .swiper-slide
+    display flex
+    flex-wrap wrap
+
+  .icons
+    margin-top .1rem
+    .icon
+        width 25vw
+        height 25vw
+        .icon-img
+          box-sizing border-box
+          padding .1rem
+          height 18vw
+          width 18vw
+          margin auto
+          .icon-img-content
+            display block
+            width 100%
+            height 100%
+        .icon-desc
+          height 7vw
+          line-height 7vw
+          text-align center
+          color $darkTextColor
+          ellipsis()
 </style>

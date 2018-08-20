@@ -18,7 +18,8 @@ export default {
         pagination: {
           el: '.swiper-pagination'
         },
-        loop: true
+        loop: true,
+        autoplay: true
       },
       swiperList: [{
         id: '0001',

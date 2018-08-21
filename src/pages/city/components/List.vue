@@ -11,14 +11,14 @@
         <div class="title">字母排序</div>
         <div class="indexes">
           <div class="index" v-for="(alpha, key) in cities" :key="key">
-            <a class="anc" :href="'#' + key" v-text="key"></a>
+            <a class="anc" href="#" v-text="key"  @click.prevent="handleLetterClick"></a>
           </div>
         </div>
       </div>
       <div class="area">
         <template v-for="(alpha, key) in cities">
-          <div class="title alpha-title" v-text="key" :key="key"></div>
-          <div class="item-list" :key="'part' + key" :id="key">
+          <div class="title alpha-title" v-text="key" :key="key" :id="key"></div>
+          <div class="item-list" :key="'part' + key">
             <div class="item" v-for="city of alpha" v-text="city.name" :key="city.id"></div>
           </div>
         </template>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Bscroll from 'better-scroll'
+import BScroll from 'better-scroll'
 export default {
   name: 'CityList',
   props: {
@@ -36,7 +36,12 @@ export default {
     cities: Object
   },
   mounted () {
-    this.scroll = new Bscroll(this.$refs.wrapper)
+    this.scroll = new BScroll(this.$refs.wrapper, {click: true})
+  },
+  methods: {
+    handleLetterClick (e) {
+      this.scroll.scrollToElement('#' + e.target.innerText, 1000)
+    }
   }
 }
 </script>
@@ -75,12 +80,15 @@ export default {
         display flex
         flex-wrap wrap
         .index
-          box-sizing border-box
           width 16.6667vw
           text-align center
-          padding .32rem .25rem
           .anc
             color #000
+            display block
+            width 100%
+            height 100%
+            padding .32rem .25rem
+            box-sizing border-box
     .area
       .item-list
         display flex

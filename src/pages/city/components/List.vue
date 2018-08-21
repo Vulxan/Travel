@@ -4,84 +4,24 @@
       <div class="hot-cities">
         <div class="title">热门城市</div>
         <div class="cities">
-          <div class="city border">北京</div>
-          <div class="city border">上海</div>
-          <div class="city border">三亚</div>
-          <div class="city border">香港</div>
-          <div class="city border">杭州</div>
-          <div class="city border">广州</div>
-          <div class="city border">成都</div>
-          <div class="city border">深圳</div>
-          <div class="city border">苏州</div>
-          <div class="city border">桂林</div>
-          <div class="city border">西安</div>
-          <div class="city border">厦门</div>
+          <div class="city border" v-for="city of hot" :key="city.id" v-text="city.name"></div>
         </div>
       </div>
       <div class="alpha-index">
         <div class="title">字母排序</div>
         <div class="indexes">
-          <div class="index">A</div>
-          <div class="index">B</div>
-          <div class="index">C</div>
-          <div class="index">D</div>
-          <div class="index">E</div>
-          <div class="index">F</div>
-          <div class="index">G</div>
-          <div class="index">H</div>
-          <div class="index">J</div>
-          <div class="index">K</div>
-          <div class="index">L</div>
-          <div class="index">M</div>
-          <div class="index">N</div>
-          <div class="index">P</div>
-          <div class="index">Q</div>
-          <div class="index">R</div>
-          <div class="index">S</div>
-          <div class="index">T</div>
-          <div class="index">W</div>
-          <div class="index">X</div>
-          <div class="index">Y</div>
-          <div class="index">Z</div>
+          <div class="index" v-for="(alpha, key) in cities" :key="key">
+            <a class="anc" :href="'#' + key" v-text="key"></a>
+          </div>
         </div>
       </div>
       <div class="area">
-        <div class="title alpha-title">A</div>
-        <div class="item-list">
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-        </div>
-        <div class="title alpha-title">A</div>
-        <div class="item-list">
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-        </div>
-        <div class="title alpha-title">A</div>
-        <div class="item-list">
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-        </div>
+        <template v-for="(alpha, key) in cities">
+          <div class="title alpha-title" v-text="key" :key="key"></div>
+          <div class="item-list" :key="'part' + key" :id="key">
+            <div class="item" v-for="city of alpha" v-text="city.name" :key="city.id"></div>
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -91,6 +31,10 @@
 import Bscroll from 'better-scroll'
 export default {
   name: 'CityList',
+  props: {
+    hot: Array,
+    cities: Object
+  },
   mounted () {
     this.scroll = new Bscroll(this.$refs.wrapper)
   }
@@ -135,6 +79,8 @@ export default {
           width 16.6667vw
           text-align center
           padding .32rem .25rem
+          .anc
+            color #000
     .area
       .item-list
         display flex

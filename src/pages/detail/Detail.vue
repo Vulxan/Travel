@@ -1,10 +1,8 @@
 <template>
   <div class="detial">
-    <detail-banner></detail-banner>
+    <detail-banner :sightName="sightName" :bannerImg="bannerImg" :bannerImgs="gallaryImgs"></detail-banner>
     <detail-header></detail-header>
-    <div class="tempContent">
-      <detial-list :list="list"></detial-list>
-    </div>
+    <detial-list :list="list"></detial-list>
   </div>
 </template>
 
@@ -12,6 +10,7 @@
 import DetailBanner from './components/Banner'
 import DetailHeader from './components/Header'
 import DetialList from './components/List'
+import axios from 'axios'
 
 export default {
   name: 'Detail',
@@ -22,49 +21,35 @@ export default {
   },
   data () {
     return {
-      list: [
-        {
-          title: '成人票',
-          id: '0001',
-          children: [
-            {
-              title: '成人三馆联票',
-              id: '0001',
-              children: [
-                {
-                  title: '成人三馆联 - 某一连锁店',
-                  id: '0001'
-                }
-              ]
-            },
-            {
-              title: '成人五馆联票',
-              id: '0002'
-            }
-          ]
-        },
-        {
-          title: '学生票',
-          id: '0002'
-        },
-        {
-          title: '儿童票',
-          id: '0003'
-        },
-        {
-          title: '特惠票',
-          id: '0004'
-        }
-      ]
+      sightName: '',
+      bannerImg: '',
+      gallaryImgs: [],
+      list: []
     }
   },
-  activated () {
-    document.documentElement.scrollTop = 0
+  methods: {
+    getDetailInfo () {
+      axios.get('/api/detail.json', {
+        params: this.$route.query
+      }).then(this.getDetailInfoSucc)
+    },
+    getDetailInfoSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.sightName = data.sightName
+        this.bannerImg = data.bannerImg
+        this.gallaryImgs = data.gallaryImgs
+        this.list = data.categoryList
+      }
+    }
+  },
+  mounted () {
+    this.getDetailInfo()
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-  .tempContent
-    height 50rem
+
 </style>

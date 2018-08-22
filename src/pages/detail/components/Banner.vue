@@ -1,17 +1,17 @@
 <template>
   <div class="banner" @click="handleGallaryToggle">
     <div class="banner-wrapper">
-      <img class="banner-img" src="http://img1.qunarzz.com/sight/p0/1502/15/15ca1d0eab6bf46c.water.jpg_600x330_1108fbd3.jpg" alt="">
+      <img class="banner-img" :src="bannerImg" alt="">
       <div class="banner-info">
-        <div class="banner-title">东部华侨城大峡谷</div>
+        <div class="banner-title" v-text="sightName"></div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe60f;</span>
-          15
+          {{ this.bannerImgs.length }}
         </div>
       </div>
     </div>
     <div class="gallary-wrapper"  v-if="showGallary">
-      <connon-gallary :imgs="imgs" @close="handleGallaryToggle"></connon-gallary>
+      <connon-gallary :imgs="bannerImgs" @close="handleGallaryToggle"></connon-gallary>
     </div>
   </div>
 </template>
@@ -22,7 +22,6 @@ export default {
   name: 'DetailBanner',
   data () {
     return {
-      imgs: ['http://img1.qunarzz.com/sight/p0/1502/15/15ca1d0eab6bf46c.water.jpg_r_800x800_a1f9671c.jpg', 'http://img1.qunarzz.com/sight/p0/201301/16/4593d3d5a27f445b93835fbb.jpg_r_800x800_8c52fe48.jpg'],
       showGallary: false
     }
   },
@@ -31,6 +30,11 @@ export default {
       this.showGallary = !this.showGallary
       console.log(this.showGallary)
     }
+  },
+  props: {
+    sightName: String,
+    bannerImg: String,
+    bannerImgs: Array
   },
   components: {
     ConnonGallary

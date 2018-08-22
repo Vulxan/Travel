@@ -21,6 +21,7 @@ export default {
 <style lang="stylus" scoped>
   .list
     .item
+      height 30vh
       .item-title
         line-height .8rem
         font-size .32rem

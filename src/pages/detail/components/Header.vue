@@ -10,30 +10,32 @@ export default {
   name: 'DetailHeader',
   data () {
     return {
-      showAbs: true,
       opacityStyle: {
-        opacity: 0
+        opacity: 1
+      },
+      top: 0
+    }
+  },
+  computed: {
+    showAbs () {
+      if (this.top > 60) {
+        return false
+      } else {
+        return true
       }
     }
   },
   methods: {
     handleScroll () {
-      const top = document.documentElement.scrollTop
-      if (top > 60) {
-        this.showAbs = false
-        let opacity = (top - 60) / 103
-        opacity = opacity > 1 ? 1 : opacity
-        this.opacityStyle = { opacity }
-      } else {
-        this.showAbs = true
-      }
+      this.top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+      let opacity = (this.top - 60) / 103
+      opacity = opacity > 1 ? 1 : opacity
+      opacity = opacity < 0 ? 0 : opacity
+      this.opacityStyle = { opacity }
     }
   },
-  activated () {
+  created () {
     window.addEventListener('scroll', this.handleScroll)
-  },
-  deactivated () {
-    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>

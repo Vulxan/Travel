@@ -24,7 +24,8 @@ export default {
       sightName: '',
       bannerImg: '',
       gallaryImgs: [],
-      list: []
+      list: [],
+      top: 0
     }
   },
   methods: {

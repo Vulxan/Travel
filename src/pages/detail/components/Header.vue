@@ -1,7 +1,7 @@
 <template>
   <div class="header">
-    <router-link v-show="showAbs" tag="div" to="/" class="header-abs"><div class="iconfont header-abs-back">&#xe624;</div></router-link>
-    <div class="header-fixed" :style="opacityStyle" v-show="!showAbs"><router-link tag="span" to="/" class="iconfont header-fixed-back">&#xe624;</router-link>景点详情</div>
+    <router-link v-show="showAbs" tag="div" to="/" class="header-abs" @click="handleClick"><div class="iconfont header-abs-back">&#xe624;</div></router-link>
+    <div class="header-fixed" :style="opacityStyle" v-show="!showAbs"><router-link tag="span" to="/" class="iconfont header-fixed-back" @click="handleClick">&#xe624;</router-link>景点详情</div>
   </div>
 </template>
 
@@ -17,6 +17,9 @@ export default {
     }
   },
   methods: {
+    handleClick () {
+      document.documentElement.scrollTop = 0
+    },
     handleScroll () {
       const top = document.documentElement.scrollTop
       if (top > 60) {
@@ -55,6 +58,7 @@ export default {
         color #FFF
         font-size .4rem
     .header-fixed
+      z-index 2
       font-size .3rem
       overflow hidden
       height $headerHeight

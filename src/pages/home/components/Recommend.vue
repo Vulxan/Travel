@@ -2,7 +2,7 @@
   <div class="recommend">
     <div class="title">热销推荐</div>
     <ul>
-      <li class="item border-bottom" v-for="item of list" :key="item.id">
+      <router-link tag="li" class="item border-bottom" v-for="item of list" :key="item.id" :to="'/detail?id=' + item.id">
         <div class="item-img-wrapper">
           <img :src="item.imgUrl" alt="#" class="item-img">
         </div>
@@ -11,7 +11,7 @@
           <p class="item-stars"><span class="stars iconfont">&#xe805;&#xe805;&#xe805;&#xe805;&#xe805;</span>&nbsp;&nbsp;&nbsp;<span class="comment" v-text="item.comment"></span></p>
           <p class="item-pri-add"><span class="pri">¥<em class="pri-num" v-text="item.pri"></em></span><span class="add" v-text="item.add"></span></p>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>

@@ -10,14 +10,15 @@
         </div>
       </div>
     </div>
-    <div class="gallary-wrapper"  v-if="showGallary">
-      <connon-gallary :imgs="bannerImgs" @close="handleGallaryToggle"></connon-gallary>
-    </div>
+    <fade-animation>
+      <connon-gallary :imgs="bannerImgs" @close="handleGallaryToggle" v-show="showGallary"></connon-gallary>
+    </fade-animation>
   </div>
 </template>
 
 <script>
 import ConnonGallary from '@/common/gallary/Gallary'
+import FadeAnimation from '@/common/fade/FadeAnimation'
 export default {
   name: 'DetailBanner',
   data () {
@@ -28,7 +29,6 @@ export default {
   methods: {
     handleGallaryToggle (isShow) {
       this.showGallary = !this.showGallary
-      console.log(this.showGallary)
     }
   },
   props: {
@@ -37,7 +37,8 @@ export default {
     bannerImgs: Array
   },
   components: {
-    ConnonGallary
+    ConnonGallary,
+    FadeAnimation
   }
 }
 </script>

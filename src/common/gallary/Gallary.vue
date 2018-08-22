@@ -28,7 +28,8 @@ export default {
           type: 'fraction'
         },
         observer: true,
-        observeParents: true
+        observeParents: true,
+        effect: 'flip'
       }
     }
   },

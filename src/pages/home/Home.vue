@@ -31,7 +31,7 @@ export default {
   components: {HomeHeader, HomeSwiper, HomeIcons, HomeRecommend, HomeWeekend},
   methods: {
     getHomeInfo () {
-      axios.get('/api/index.json?city=' + this.city).then(this.getHomeInfoSucc)
+      axios.get('/api/home.json?city=' + this.city).then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (res) {
       res = res.data

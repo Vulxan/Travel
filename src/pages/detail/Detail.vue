@@ -31,7 +31,7 @@ export default {
   methods: {
     getDetailInfo () {
       // '/api/detail.json' dev
-      // '/TravelOnline/mock/detail.json' Prod
+      // '/Travel/mock/detail.json' Prod
       axios.get('/api/detail.json', {
         params: this.$route.query
       }).then(this.getDetailInfoSucc)

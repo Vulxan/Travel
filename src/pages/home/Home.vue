@@ -32,7 +32,7 @@ export default {
   methods: {
     getHomeInfo () {
       axios.get('/api/home.json?city=' + this.city).then(this.getHomeInfoSucc) // Dev
-      // axios.get('/TravelOnline/mock/home.json?city=' + this.city).then(this.getHomeInfoSucc) // Prod
+      // axios.get('/Travel/mock/home.json?city=' + this.city).then(this.getHomeInfoSucc) // Prod
     },
     getHomeInfoSucc (res) {
       res = res.data

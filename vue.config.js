@@ -11,6 +11,6 @@ module.exports = {
       }
     }
   },
-  baseUrl: process.env.NODE_ENV === 'production' ? '/TravelOnline/' : '/',
+  baseUrl: process.env.NODE_ENV === 'production' ? '/Travel/' : '/',
   outputDir: 'docs'
 }

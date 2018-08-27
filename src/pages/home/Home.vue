@@ -31,7 +31,8 @@ export default {
   components: {HomeHeader, HomeSwiper, HomeIcons, HomeRecommend, HomeWeekend},
   methods: {
     getHomeInfo () {
-      axios.get('/api/home.json?city=' + this.city).then(this.getHomeInfoSucc)
+      axios.get('/api/home.json?city=' + this.city).then(this.getHomeInfoSucc) // Dev
+      // axios.get('/TravelOnline/mock/home.json?city=' + this.city).then(this.getHomeInfoSucc) // Prod
     },
     getHomeInfoSucc (res) {
       res = res.data
